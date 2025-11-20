@@ -6,3 +6,4 @@
 </div>
 
 <?php include 'includes/footer.php'; ?>
+<link rel="stylesheet" href="/assets/css/styles.css">
