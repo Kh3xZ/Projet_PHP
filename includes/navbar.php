@@ -13,8 +13,8 @@
 
     <style>
         :root {
-            --mega-bg: #1e232e; /* Dark navy background */
-            --mega-purple: #9d00ff; /* Bright purple accent */
+            --mega-bg: rgb(0, 70, 190); /* Dark navy background */
+            --mega-purple: tomato; /* Bright purple accent */
             --mega-text: #ffffff;
             --mega-gray: #f4f6f8;
         }
@@ -130,7 +130,7 @@
         }
 
         .icon-circle i {
-            color: #b05aff; /* Purple tint for icons */
+            color: tomato; /* Purple tint for icons */
             font-size: 1.1rem;
         }
 
@@ -300,7 +300,6 @@
                         <li><a href="#" class="nav-link-item">PC PORTABLE</a></li>
                         <li><a href="#" class="nav-link-item">QUOI DE NEUF</a></li>
                         <li><a href="#" class="nav-link-item">WHITE FRIDAY</a></li>
-                        
                     </ul>
                 </div>
             </div>

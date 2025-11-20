@@ -12,7 +12,7 @@
 
     <style>
         :root {
-            --logi-purple: #9d00ff; /* Purple for active indicator */
+            --logi-purple: rgb(0, 70, 190); /* Purple for active indicator */
             --logi-bg: #0d001f;
         }
 
@@ -67,7 +67,7 @@
             width: 40px !important; /* Expands into a pill shape */
             border-radius: 10px; /* Soft corners */
             background-color: var(--logi-purple) !important; /* Purple color */
-            box-shadow: 0 0 15px rgba(157, 0, 255, 0.8); /* Stronger glow */
+            box-shadow: 0 0 15px rgb(0, 70, 190); /* Stronger glow */
             transform: scale(1); /* Reset scale since we changed width */
         }
 
@@ -102,13 +102,14 @@
 </head>
 <body>  
 
-    <div id="logiHeroCarousel" class="carousel slide logi-carousel-container" data-bs-ride="carousel" style="width: 75%;height:40%;margin-left:12%;margin-top:20px;border-radius:25px;overflow:hidden;">
+    <div id="logiHeroCarousel" class="carousel slide logi-carousel-container" data-bs-ride="carousel" style="width: 75%;height:40%;margin-left:12%;margin-top:20px;border-radius:20px;overflow:hidden;">
         
         <!-- The Indicators (Buttons that show current slide) -->
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#logiHeroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
             <button type="button" data-bs-target="#logiHeroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
             <button type="button" data-bs-target="#logiHeroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#logiHeroCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
         </div>
 
         <!-- The Images -->
@@ -116,19 +117,23 @@
             <!-- Slide 1 -->
             <div class="carousel-item active">
                 <!-- REPLACE THIS SRC WITH YOUR FIRST BANNER IMAGE -->
-                <img src="https://placehold.co/1920x600/0d001f/9d00ff?text=BANNER+IMAGE+1" alt="Banner 1">
+                <img src="assets/images/1.jpeg" alt="Banner 1">
             </div>
             
             <!-- Slide 2 -->
             <div class="carousel-item">
                 <!-- REPLACE THIS SRC WITH YOUR SECOND BANNER IMAGE -->
-                <img src="https://placehold.co/1920x600/1e003d/0099ff?text=BANNER+IMAGE+2" alt="Banner 2">
+                <img src="assets/images/2.jpeg" alt="Banner 2">
             </div>
 
             <!-- Slide 3 -->
             <div class="carousel-item">
                 <!-- REPLACE THIS SRC WITH YOUR THIRD BANNER IMAGE -->
-                <img src="https://placehold.co/1920x600/000000/ffffff?text=BANNER+IMAGE+3" alt="Banner 3">
+                <img src="assets/images/3.jpeg" alt="Banner 3">
+            </div>
+            <div class="carousel-item">
+                <!-- REPLACE THIS SRC WITH YOUR FIRST BANNER IMAGE -->
+                <img src="assets/images/4.jpeg" alt="Banner 4">
             </div>
         </div>
 
@@ -148,6 +153,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
 
 <?php include 'includes/footer.php'; ?>
 <link rel="stylesheet" href="/assets/css/styles.css">
