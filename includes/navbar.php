@@ -14,7 +14,7 @@
     <style>
         :root {
             --mega-bg: rgb(0, 70, 190); /* Dark navy background */
-            --mega-purple: tomato; /* Bright purple accent */
+            --mega-purple: tomato;
             --mega-text: #ffffff;
             --mega-gray: #f4f6f8;
         }
@@ -130,7 +130,7 @@
         }
 
         .icon-circle i {
-            color: tomato; /* Purple tint for icons */
+            color: white; /* Purple tint for icons */
             font-size: 1.1rem;
         }
 
@@ -244,7 +244,7 @@
                 <a href="#" class="text-decoration-none">
                     <div class="logo-text">
                         <!-- Using an icon and text to approximate the logo feel -->
-                        <span>//MEGA</span>
+                        <span>//MEGA TECH</span>
                     </div>
                 </a>
 
