@@ -168,7 +168,7 @@
             /* Adjust margin for spacing below the carousel */
             margin: 30px auto 30px auto; 
             border-radius: 8px; 
-            box-shadow: 0 0 15px rgba(0,0,0,0.05); /* Added light shadow for definition */
+            
         }
 
         /* The Scrollable Container */
@@ -472,6 +472,34 @@
                     <img src="assets/images/camera.jpg" alt="Cameras">
                 </div>
                 <p class="category-title" >Cameras & Camcorders</p>
+            </a>
+
+            <a href="#" class="category-item">
+                <div class="img-circle">
+                    <img src="assets/images/mouse.webp" alt="Cameras">
+                </div>
+                <p class="category-title" >Mice</p>
+            </a>
+
+            <a href="#" class="category-item">
+                <div class="img-circle">
+                    <img src="assets/images/keyboard.jpg" alt="Cameras">
+                </div>
+                <p class="category-title" >Keyboards</p>
+            </a>
+
+            <a href="#" class="category-item">
+                <div class="img-circle">
+                    <img src="assets/images/gpu.jpg" alt="Cameras">
+                </div>
+                <p class="category-title" >Composants Desktop</p>
+            </a>
+
+            <a href="#" class="category-item">
+                <div class="img-circle">
+                    <img src="assets/images/office.png" alt="Cameras">
+                </div>
+                <p class="category-title" >Logiciel</p>
             </a>
 
         </div>
