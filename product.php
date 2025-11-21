@@ -1,20 +1,23 @@
 <?php include 'includes/header.php'; ?>
 <?php include 'includes/navbar.php'; ?>
+<?php include 'includes/db.php'; ?>
+
 
 <?php
-// Mock PHP Data for a product page
-$product_name = "Gigabyte GP-P650B 650W 80+ BRONZE";
-$product_ref = "GP-P650B";
-$product_price = 211; // Price in DT (Tunisian Dinar)
-$stock_status = "En Stock"; // In Stock
-$is_new = true;
-$main_image_url = "https://placehold.co/400x400/000000/FFFFFF?text=PSU+MAIN";
-$thumbnail_urls = [
-    "https://placehold.co/80x80/28a745/FFFFFF?text=Thumb1",
-    "https://placehold.co/80x80/007bff/FFFFFF?text=Thumb2",
-    "https://placehold.co/80x80/dc3545/FFFFFF?text=Thumb3",
-    "https://placehold.co/80x80/ffc107/FFFFFF?text=Thumb4"
-];
+$id = $_GET['id'];
+
+$sql = "SELECT * FROM products WHERE product_id = $id";
+$stmt = $pdo->prepare($sql);
+$stmt->execute();
+$product = $stmt->fetch(PDO::FETCH_ASSOC);
+
+
+
+$product_name = $product["name"];
+$product_ref = $product["name"];
+$product_price = $product["price"];
+$main_image_url = "assets/images/".$product["image"];
+
 
 $specifications = [
     "Puissance" => "650 Watts",
@@ -25,10 +28,8 @@ $specifications = [
     "ATX 3.0" => "Non"
 ];
 
-$description_title = "ALIMENTATION GIGABYTE ATX 650W 80+ BRONZE";
-$description_content = "L'alimentation Gigabyte P650B est une alimentation non modulaire de 650 watts certifiée 80+ Bronze. Elle est conçue pour fournir une alimentation stable et fiable à un PC de jeu ou de bureau de milieu de gamme.
-La P650B est équipée d'un ventilateur HYB 120mm (Roulement Hydraulique) qui assure un refroidissement silencieux. Le ventilateur est régulé thermiquement et ne tourne qu'en cas de besoin.";
-
+$description_title = $product_name;
+$description_content = $product["description"];
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -126,17 +127,7 @@ La P650B est équipée d'un ventilateur HYB 120mm (Roulement Hydraulique) qui as
         <!-- 1. Left Column: Image Gallery -->
         <div class="col-lg-5 d-flex flex-column flex-md-row">
             <!-- Thumbnails (left of main image) -->
-            <div class="d-flex flex-row flex-md-column me-md-3 order-2 order-md-1 mb-3 mb-md-0 overflow-auto">
-                <?php foreach ($thumbnail_urls as $index => $url): ?>
-                    <img src="<?php echo htmlspecialchars($url); ?>" 
-                         alt="Thumbnail <?php echo $index + 1; ?>" 
-                         class="thumbnail-image img-fluid <?php echo $index === 0 ? 'active' : ''; ?>" 
-                         style="max-width: 80px; max-height: 80px; object-fit: cover;" 
-                         onclick="changeMainImage('<?php echo htmlspecialchars($url); ?>', this)">
-                <?php endforeach; ?>
-            </div>
-
-            <!-- Main Image (center) -->
+            
             <div class="flex-grow-1 position-relative order-1 order-md-2 mb-3 mb-md-0">
                 <div class="d-flex align-items-center justify-content-center bg-light rounded-2" style="min-height: 300px;">
                     <img id="main-product-image" 
@@ -157,8 +148,6 @@ La P650B est équipée d'un ventilateur HYB 120mm (Roulement Hydraulique) qui as
             <p class="text-muted small mb-3">
                 Référence: <span class="fw-semibold"><?php echo htmlspecialchars($product_ref); ?></span>
             </p>
-
-            
 
             <ul class="spec-list mt-4">
                 <?php foreach ($specifications as $key => $value): ?>

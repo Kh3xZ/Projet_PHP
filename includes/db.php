@@ -1,8 +1,8 @@
 <?php
 $host = "localhost";
-$dbname = "techstore";
+$dbname = "projetphp";
 $user = "root";
-$pass = "";
+$pass = "159753258";
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pass);

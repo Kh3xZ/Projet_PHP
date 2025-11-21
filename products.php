@@ -3,58 +3,18 @@
 
 include 'includes/header.php'; 
 include 'includes/navbar.php'; 
+include 'includes/db.php';
 
-// --- MOCK DATA for Product Cards on a Listing Page ---
-$products = [
-    [
-        'id' => 101, 
-        'name' => 'Gigabyte GP-P650B 650W', 
-        'price' => 211, 
-        'image' => 'https://placehold.co/300x200/007bff/FFFFFF?text=PSU+650W',
-        'ref' => 'GP-P650B',
-        'status' => 'En Stock',
-        'category' => 'Alimentation' 
-    ],
-    [
-        'id' => 102, 
-        'name' => 'Intel Core i5-13400F', 
-        'price' => 689, 
-        'image' => 'https://placehold.co/300x200/28a745/FFFFFF?text=CPU+i5',
-        'ref' => 'i5-13400F',
-        'status' => 'Rupture',
-        'category' => 'Processeurs'
-    ],
-    [
-        'id' => 103, 
-        'name' => 'RTX 4060 VENTUS 2X', 
-        'price' => 1250, 
-        'image' => 'https://placehold.co/300x200/dc3545/FFFFFF?text=GPU+4060',
-        'ref' => '4060-V2X',
-        'status' => 'En Stock',
-        'category' => 'Cartes Graphiques'
-    ],
-    [
-        'id' => 104, 
-        'name' => 'Corsair Vengeance 16GB', 
-        'price' => 180, 
-        'image' => 'https://placehold.co/300x200/ffc107/000000?text=RAM+16GB',
-        'ref' => 'CMH16GX',
-        'status' => 'En Stock',
-        'category' => 'Mémoire'
-    ],
-    [
-        'id' => 105, 
-        'name' => 'AMD Ryzen 5 7600X', 
-        'price' => 750, 
-        'image' => 'https://placehold.co/300x200/6f42c1/FFFFFF?text=CPU+Ryzen',
-        'ref' => 'R5-7600X',
-        'status' => 'En Stock',
-        'category' => 'Processeurs'
-    ],
-];
 
-// --- Unique Categories for Filter Display ---
-$categories = array_unique(array_column($products, 'category'));
+$sql = "SELECT * FROM products";
+$stmt = $pdo->prepare($sql);
+$stmt->execute();
+$sql2 = "SELECT * FROM categories";
+$stmt2 = $pdo->prepare($sql2);
+$stmt2->execute();
+$products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$categories = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+
 $min_price = min(array_column($products, 'price')) ?? 100;
 $max_price = max(array_column($products, 'price')) ?? 3000;
 
@@ -113,7 +73,6 @@ $max_price = max(array_column($products, 'price')) ?? 3000;
 <body>
 
 <div class="container py-4">
-    <h1 class="mb-4">Catalogue de Produits</h1>
     <div class="row">
         
         <div class="col-lg-3">
@@ -135,8 +94,8 @@ $max_price = max(array_column($products, 'price')) ?? 3000;
                             <label class="form-label fw-semibold">Catégorie</label>
                             <?php foreach ($categories as $cat): ?>
                             <div class="form-check">
-                                <input class="form-check-input category-checkbox" type="checkbox" value="<?php echo htmlspecialchars($cat); ?>" id="cat-<?php echo str_replace(' ', '', $cat); ?>">
-                                <label class="form-check-label" for="cat-<?php echo str_replace(' ', '', $cat); ?>"><?php echo htmlspecialchars($cat); ?></label>
+                                <input class="form-check-input category-checkbox" type="checkbox" value="<?php echo htmlspecialchars($cat["category_id"]); ?>" id="cat-<?php echo str_replace(' ', '', $cat["category_name"]); ?>">
+                                <label class="form-check-label" for="cat-<?php echo str_replace(' ', '', $cat["category_name"]); ?>"><?php echo htmlspecialchars($cat["category_name"]); ?></label>
                             </div>
                             <?php endforeach; ?>
                         </div>
@@ -161,36 +120,29 @@ $max_price = max(array_column($products, 'price')) ?? 3000;
                 <?php foreach ($products as $product): ?>
                 
                 <?php 
-                    $product_url = 'product.php?id=' . htmlspecialchars($product['id']);
+                    $product_url = 'product.php?id=' . htmlspecialchars($product['product_id']);
                 ?>
                 
                 <div class="col product-card" 
                      data-price="<?php echo htmlspecialchars($product['price']); ?>"
-                     data-category="<?php echo htmlspecialchars($product['category']); ?>"
-                     data-id="<?php echo htmlspecialchars($product['id']); ?>">
+                     data-category="<?php echo htmlspecialchars($product['category_id']); ?>"
+                     data-id="<?php echo htmlspecialchars($product['product_id']); ?>">
                     
                     <div class="card h-100 product-link-card" 
                          onclick="window.location='<?php echo $product_url; ?>';">
                         
                         <div class="position-relative">
-                            <img src="<?php echo htmlspecialchars($product['image']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($product['name']); ?>" style="object-fit: cover; height: 200px;">
-                            <?php 
-                                $badge_class = $product['status'] === 'En Stock' ? 'bg-success' : 'bg-danger';
-                            ?>
-                            <span class="badge position-absolute top-0 end-0 mt-2 me-2 <?php echo $badge_class; ?>">
-                                <?php echo htmlspecialchars($product['status']); ?>
-                            </span>
+                            <img src="assets/images/<?php echo htmlspecialchars($product['image']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($product['name']); ?>" style="object-fit: cover; height: 200px;">
                         </div>
                         
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title fw-semibold text-truncate"><?php echo htmlspecialchars($product['name']); ?></h5>
-                            <p class="card-text text-muted small mb-2">Ref: <?php echo htmlspecialchars($product['ref']); ?></p>
                             <p class="price-text mt-auto mb-3">
                                 <?php echo number_format($product['price'], 0, ',', ' '); ?> DT
                             </p>
                             
                             <div class="d-grid">
-                                <button type="button" class="btn btn-sm btn-primary" onclick="event.stopPropagation(); addToCart(<?php echo $product['id']; ?>)">
+                                <button type="button" class="btn btn-sm btn-primary" onclick="event.stopPropagation(); addToCart(<?php echo $product['product_id']; ?>)">
                                     <i class="fas fa-cart-plus me-1"></i> Ajouter au panier
                                 </button>
                             </div>

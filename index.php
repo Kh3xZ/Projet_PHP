@@ -348,7 +348,9 @@
                 <div class="deal-text">
                     Save $160 on TCL 55" F35 Series LED 4K TV. Only $169.99 after savings.
                 </div>
+                <form action="product.php?">
                 <button class="deal-btn">Shop now</button>
+                </form>
             </div>
         </div>
 
@@ -418,7 +420,7 @@
         <div class="category-scroll-container" id="scrollContainer" >
             
             <!-- Item 1: Shop All -->
-            <a href="#" class="category-item">
+            <a href="products.php" class="category-item">
                 <div class="img-circle">
                     <div class="position-relative">
                         <i class="fas fa-star icon-placeholder"></i>
