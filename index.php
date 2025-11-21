@@ -348,9 +348,11 @@
                 <div class="deal-text">
                     Save $160 on TCL 55" F35 Series LED 4K TV. Only $169.99 after savings.
                 </div>
-                <form action="product.php?">
-                <button class="deal-btn">Shop now</button>
+                <form method="get" action="product.php">
+                 <input type="hidden" name="id" value="41">
+                 <button class="deal-btn">Shop now</button>
                 </form>
+
             </div>
         </div>
 
@@ -383,7 +385,7 @@
             <div class="deal-card">
                 <div class="deal-header save">Save</div>
                 <div class="deal-price">$270</div>
-                <img src="assets/images/cleaning.webp" class="deal-img" alt="">
+                <img src="assets/images/iphonedeal.webp" class="deal-img" alt="">
                 <div class="deal-text">
                     Only $229.99 for this Shark cordless vacuum after $270 savings.
                 </div>
@@ -394,7 +396,7 @@
             <div class="deal-card">
                 <div class="deal-header save">Save</div>
                 <div class="deal-price">$270</div>
-                <img src="assets/images/cleaning.webp" class="deal-img" alt="">
+                <img src="assets/images/sonywhdeal.webp" class="deal-img" alt="">
                 <div class="deal-text">
                     Only $229.99 for this Shark cordless vacuum after $270 savings.
                 </div>
