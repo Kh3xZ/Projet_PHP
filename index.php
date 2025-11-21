@@ -26,9 +26,15 @@
         }
 
         .deals-section {
-    margin-top: 40px;
-}
+                margin-top: 40px;
+                
+        }
 
+        @media (min-width: 992px) { 
+    .col-lg-2-4 {
+        width: 20%; /* 100% / 5 cards = 20% each */
+    }
+}
 .deal-card {
     background: rgb(0, 70, 190);      /* deep Best Buy blue */
     color: white;
@@ -78,6 +84,8 @@
     font-weight: 600;
     padding: 10px 0;
     border-radius: 8px;
+    cursor: pointer;
+    
 }
 
         
@@ -328,12 +336,11 @@
     </div>
 
     <!-- DEALS SECTION -->
-<div class="deals-section container mt-5">
+<div class="deals-section container-fluid mt-5">
 
-    <div class="row g-4 justify-content-center">
-
+    <div class="row g-4 justify-content-center" >
         <!-- Deal Card -->
-        <div class="col-md-3 col-sm-6">
+        <div class="col-md-2 col-sm-6">
             <div class="deal-card">
                 <div class="deal-header">Only</div>
                 <div class="deal-price">$169.99</div>
@@ -346,7 +353,7 @@
         </div>
 
         <!-- Duplicate these for more cards -->
-        <div class="col-md-3 col-sm-6">
+        <div class="col-md-2 col-sm-6">
             <div class="deal-card">
                 <div class="deal-header">Only</div>
                 <div class="deal-price">$29.99</div>
@@ -358,7 +365,7 @@
             </div>
         </div>
 
-        <div class="col-md-3 col-sm-6">
+        <div class="col-md-2 col-sm-6">
             <div class="deal-card">
                 <div class="deal-header save">Save</div>
                 <div class="deal-price">$420</div>
@@ -370,7 +377,18 @@
             </div>
         </div>
 
-        <div class="col-md-3 col-sm-6">
+        <div class="col-md-2 col-sm-6">
+            <div class="deal-card">
+                <div class="deal-header save">Save</div>
+                <div class="deal-price">$270</div>
+                <img src="assets/images/cleaning.webp" class="deal-img" alt="">
+                <div class="deal-text">
+                    Only $229.99 for this Shark cordless vacuum after $270 savings.
+                </div>
+                <button class="deal-btn">Shop now</button>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-6">
             <div class="deal-card">
                 <div class="deal-header save">Save</div>
                 <div class="deal-price">$270</div>
