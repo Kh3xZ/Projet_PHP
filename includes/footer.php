@@ -156,7 +156,7 @@
                     <a href="#" class="text-decoration-none">
                     <div class="logo-text">
                         <!-- Using an icon and text to approximate the logo feel -->
-                        <span>//MEGA TECH</span>
+                        <span>//TECHNOLOGIA</span>
                     </div>
                 </a>
 
@@ -195,7 +195,7 @@
 
                 <!-- Column 3: Mega Links (col-12, col-md-2) -->
                 <div class="col-6 col-md-2">
-                    <h4 class="footer-heading">Mega</h4>
+                    <h4 class="footer-heading">TECHNOLOGIA</h4>
                     <ul class="footer-list">
                         <li><a href="#">Qui sommes nous</a></li>
                         <li><a href="#">Contact</a></li>
@@ -211,15 +211,19 @@
                     <div class="footer-text">
                         <p class="contact-detail">
                             <i class="fas fa-envelope"></i>
-                            <span>megapctn@gmail.com</span>
+                            <span>Khalil.Kh3xZ@gmail.com</span>
                         </p>
                         <p class="contact-detail">
-                            <i class="fas fa-phone-alt"></i>
-                            <span>28777101-29806000-36010932</span>
+                            <i class="fas fa-envelope"></i>
+                            <span>aziztrabelssi37@gmail.com </span>
                         </p>
                         <p class="contact-detail">
                             <i class="fas fa-map-marker-alt"></i>
-                            <span>88 rue oran medina jedida ben arous</span>
+                            <span>Higher Institute of Technological Studies of Rades</span>
+                        </p>
+                        <p class="contact-detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Ezzahra , Ben Arous</span>
                         </p>
                     </div>
                 </div>
@@ -231,7 +235,7 @@
         <div class="footer-bottom mt-5">
             <div class="container">
                 <p>
-                    &copy; Copyright 2025 <span class="text-white fw-bold">Mega</span> All rights reserved.
+                    &copy; Copyright 2025 <span class="text-white fw-bold">TECHNOLOGIA</span> All rights reserved.
                 </p>
             </div>
         </div>

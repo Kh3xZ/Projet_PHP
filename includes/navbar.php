@@ -244,7 +244,7 @@
                 <a href="index.php" class="text-decoration-none">
                     <div class="logo-text">
                         <!-- Using an icon and text to approximate the logo feel -->
-                        <span>//MEGA TECH</span>
+                        <span>//TECHNOLOGIA</span>
                     </div>
                 </a>
 
