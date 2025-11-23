@@ -1,9 +1,12 @@
+<?php
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mega Navbar Replica</title>
+    <title>navbar</title>
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- FontAwesome for Icons -->
@@ -53,10 +56,6 @@
             display: flex;
             align-items: center;
         }
-        .logo-text i {
-            font-size: 1.5rem;
-            margin-right: 5px;
-        }
 
         /* Search Bar Styling */
         .search-container {
@@ -82,7 +81,7 @@
             font-size: 0.95rem;
             color: #555;
         }
-        
+
         .search-input::placeholder {
             color: #aab2bd;
         }
@@ -124,13 +123,13 @@
             position: relative;
             transition: background-color 0.3s;
         }
-        
+
         .action-item:hover .icon-circle {
             background-color: rgba(255, 255, 255, 0.2);
         }
 
         .icon-circle i {
-            color: white; /* Purple tint for icons */
+            color: white;
             font-size: 1.1rem;
         }
 
@@ -173,7 +172,7 @@
             letter-spacing: 0.5px;
             margin-right: 20px;
         }
-        
+
         .all-products-btn:hover {
             color: white;
             filter: brightness(1.1);
@@ -192,7 +191,7 @@
             margin: 0;
             padding: 0;
             gap: 25px;
-            overflow-x: auto; /* Handle overflow on small screens */
+            overflow-x: auto;
         }
 
         .nav-link-item {
@@ -208,103 +207,94 @@
         .nav-link-item:hover {
             color: var(--mega-purple);
         }
-
-        /* Responsive adjustments */
-        @media (max-width: 992px) {
-            .search-container {
-                order: 3;
-                width: 100%;
-                max-width: 100%;
-                margin: 10px 0 0 0;
-            }
-            .top-bar {
-                flex-wrap: wrap;
-            }
-            .nav-links {
-                display: none; /* Hidden on mobile for simplicity, typically becomes a hamburger menu */
-            }
-            .bottom-bar {
-                justify-content: space-between;
-            }
-            .all-products-btn {
-                width: 100%;
-                justify-content: center;
-            }
-        }
     </style>
 </head>
 <body>
 
-    <header class="mega-header">
-        <div class="container">
-            <!-- TOP ROW: Logo, Search, User Actions -->
-            <div class="top-bar">
-                
-                <!-- Logo (Styled text to match MEGA) -->
-                <a href="index.php" class="text-decoration-none">
-                    <div class="logo-text">
-                        <!-- Using an icon and text to approximate the logo feel -->
-                        <span>//TECHNOLOGIA</span>
-                    </div>
-                </a>
+<header class="mega-header">
+    <div class="container">
+        <div class="top-bar">
 
-                <!-- Search Bar -->
-                <div class="search-container">
-                    <div class="search-input-group">
-                        <input type="text" class="form-control search-input" placeholder="Rechercher" aria-label="Rechercher">
-                        <button class="search-btn" type="button">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
+            <!-- LOGO -->
+            <a href="index.php" class="text-decoration-none">
+                <div class="logo-text">//TECHNOLOGIA</div>
+            </a>
+
+            <!-- SEARCH BAR -->
+            <div class="search-container">
+                <div class="search-input-group">
+                    <input type="text" class="form-control search-input" placeholder="Rechercher">
+                    <button class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
                 </div>
+            </div>
 
-                <!-- Right Side Actions -->
-                <div class="user-actions">
-                    <!-- Connexion -->
-                    <a href="#" class="action-item">
+            <!-- RIGHT SIDE ACTIONS -->
+            <div class="user-actions">
+
+                <?php if (!isset($_SESSION["user_id"])): ?>
+                    <!-- Not Logged In -->
+                    <a href="login.php" class="action-item">
                         <div class="icon-circle">
                             <i class="fas fa-user"></i>
                         </div>
                         <span>Connexion</span>
                     </a>
-
-                    <!-- Panier -->
-                    <a href="#" class="action-item">
+                <?php else: ?>
+                    <!-- Logged In -->
+                    <a href="dashboard.php" class="action-item">
                         <div class="icon-circle">
-                            <i class="fas fa-shopping-bag"></i>
-                            <span class="cart-badge">0</span>
+                            <i class="fas fa-user"></i>
                         </div>
-                        <span>Mon Panier</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- BOTTOM ROW: Categories Button & Nav Links -->
-        <div class="bottom-bar-wrapper" style="border-top: 1px solid rgba(255,255,255,0.1);">
-            <div class="container">
-                <div class="bottom-bar">
-                    <!-- Purple 'All Products' Button -->
-                    <a href="#" class="all-products-btn">
-                        <i class="fas fa-bars"></i>
-                        TOUS NOS PRODUITS
+                        <span><?= htmlspecialchars($_SESSION["nom"]) ?></span>
                     </a>
 
-                    <!-- Navigation Menu -->
-                    <ul class="nav-links">
-                        <li><a href="#" class="nav-link-item">CATEGORIES</a></li>
-                        <li><a href="#" class="nav-link-item">NOUVAUTES</a></li>
-                        <li><a href="#" class="nav-link-item">PROMOTION</a></li>
-                        <li><a href="#" class="nav-link-item">PRE BUILD</a></li>
-                        <li><a href="#" class="nav-link-item">CUSTOM BUILD</a></li
-                        <li><a href="#" class="nav-link-item">PC PORTABLE</a></li>
-                        <li><a href="#" class="nav-link-item">QUOI DE NEUF</a></li>
-                        <li><a href="#" class="nav-link-item">WHITE FRIDAY</a></li>
-                    </ul>
-                </div>
+                    <a href="logout.php" class="action-item">
+                        <div class="icon-circle">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </div>
+                        <span>Logout</span>
+                    </a>
+                <?php endif; ?>
+
+                <!-- CART -->
+                <a href="#" class="action-item">
+                    <div class="icon-circle">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span class="cart-badge">0</span>
+                    </div>
+                    <span>Mon Panier</span>
+                </a>
             </div>
         </div>
-    </header>
+    </div>
+
+    <!-- BOTTOM NAV -->
+    <div class="bottom-bar-wrapper" style="border-top: 1px solid rgba(255,255,255,0.1);">
+        <div class="container">
+            <div class="bottom-bar">
+
+                <a href="#" class="all-products-btn">
+                    <i class="fas fa-bars"></i>
+                    TOUS NOS PRODUITS
+                </a>
+
+                <ul class="nav-links">
+                    <li><a href="#" class="nav-link-item">CATEGORIES</a></li>
+                    <li><a href="#" class="nav-link-item">NOUVAUTES</a></li>
+                    <li><a href="#" class="nav-link-item">PROMOTION</a></li>
+                    <li><a href="#" class="nav-link-item">PRE BUILD</a></li>
+                    <li><a href="#" class="nav-link-item">CUSTOM BUILD</a></li>
+                    <li><a href="#" class="nav-link-item">PC PORTABLE</a></li>
+                    <li><a href="#" class="nav-link-item">QUOI DE NEUF</a></li>
+                    <li><a href="#" class="nav-link-item">WHITE FRIDAY</a></li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</header>
 
 </body>
 </html>
