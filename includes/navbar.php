@@ -7,16 +7,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>navbar</title>
-    <!-- Bootstrap 5 CSS -->
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts for a similar look -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --mega-bg: rgb(0, 70, 190); /* Dark navy background */
+            --mega-bg: rgb(0, 70, 190);
             --mega-purple: tomato;
             --mega-text: #ffffff;
             --mega-gray: #f4f6f8;
@@ -28,14 +26,11 @@
             margin: 0;
         }
 
-        /* --- Main Navbar Wrapper --- */
         .mega-header {
             background-color: var(--mega-bg);
             color: var(--mega-text);
             padding-top: 15px;
         }
-
-        /* --- Top Row Styling --- */
         .top-bar {
             display: flex;
             align-items: center;
@@ -43,7 +38,6 @@
             padding-bottom: 15px;
         }
 
-        /* Logo Styling */
         .logo-text {
             font-family: 'Roboto', sans-serif;
             font-weight: 900;
@@ -57,7 +51,6 @@
             align-items: center;
         }
 
-        /* Search Bar Styling */
         .search-container {
             flex-grow: 1;
             max-width: 700px;
@@ -95,7 +88,6 @@
             border-radius: 0 50px 50px 0;
         }
 
-        /* User & Cart Actions */
         .user-actions {
             display: flex;
             align-items: center;
@@ -133,7 +125,6 @@
             font-size: 1.1rem;
         }
 
-        /* Cart Badge */
         .cart-badge {
             position: absolute;
             top: -5px;
@@ -150,7 +141,6 @@
             border: 2px solid var(--mega-bg);
         }
 
-        /* --- Bottom Row Styling --- */
         .bottom-bar {
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             display: flex;
@@ -158,7 +148,6 @@
             height: 50px;
         }
 
-        /* The Purple "All Products" Button */
         .all-products-btn {
             background-color: var(--mega-purple);
             color: white;
@@ -214,13 +203,9 @@
 <header class="mega-header">
     <div class="container">
         <div class="top-bar">
-
-            <!-- LOGO -->
             <a href="index.php" class="text-decoration-none">
                 <div class="logo-text">//TECHNOLOGIA</div>
             </a>
-
-            <!-- SEARCH BAR -->
             <div class="search-container">
                 <div class="search-input-group">
                     <input type="text" class="form-control search-input" placeholder="Rechercher">
@@ -230,20 +215,17 @@
                 </div>
             </div>
 
-            <!-- RIGHT SIDE ACTIONS -->
             <div class="user-actions">
-
                 <?php if (!isset($_SESSION["user_id"])): ?>
-                    <!-- Not Logged In -->
                     <a href="login.php" class="action-item">
                         <div class="icon-circle">
                             <i class="fas fa-user"></i>
                         </div>
                         <span>Connexion</span>
                     </a>
+
                 <?php else: ?>
-                    <!-- Logged In -->
-                    <a href="dashboard.php" class="action-item">
+                    <a href="" class="action-item">
                         <div class="icon-circle">
                             <i class="fas fa-user"></i>
                         </div>
@@ -257,8 +239,6 @@
                         <span>Logout</span>
                     </a>
                 <?php endif; ?>
-
-                <!-- CART -->
                 <a href="#" class="action-item">
                     <div class="icon-circle">
                         <i class="fas fa-shopping-bag"></i>
@@ -270,7 +250,7 @@
         </div>
     </div>
 
-    <!-- BOTTOM NAV -->
+
     <div class="bottom-bar-wrapper" style="border-top: 1px solid rgba(255,255,255,0.1);">
         <div class="container">
             <div class="bottom-bar">

@@ -4,31 +4,36 @@ session_start();
 require 'includes/db.php';
 
 $message = "";
-
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $email = trim($_POST["email"]);
-    $mdp   = $_POST["mdp"];
-    $nom   = trim($_POST["nom"]);
-
-    $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
-    $stmt->execute([$email]);
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if ($user) {
-        $message = "Email already registered.";
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = filter_var(trim($_POST['email'] ?? ''), FILTER_VALIDATE_EMAIL);
+    $mdp = $_POST['mdp'] ?? '';
+    $nom = trim($_POST['nom'] ?? '');
+    if (!$email) {
+        $message = 'Please enter a valid email.';
+    } elseif (strlen($mdp) < 6) {
+        $message = 'Password must be at least 6 characters.';
+    } elseif ($nom === '') {
+        $message = 'Please enter your name.';
     } else {
-        $hash = password_hash($mdp, PASSWORD_DEFAULT);
-        $stmt = $pdo->prepare("INSERT INTO users (nom, email, mdp) VALUES (?, ?, ?)");
-        if ($stmt->execute([$nom, $email, $hash])) {
-            header("Location: login.php?success=1"); // <-- must come before any output
-            exit;
+        $check = $pdo->prepare('SELECT user_id FROM users WHERE email = ? LIMIT 1');
+        $check->execute([$email]);
+        $exists = $check->fetch(PDO::FETCH_ASSOC);
+
+        if ($exists) {
+            $message = 'Email already registered.';
         } else {
-            $message = "Something went wrong. Please try again.";
+            $hash = password_hash($mdp, PASSWORD_DEFAULT);
+            $insert = $pdo->prepare('INSERT INTO users (nom, email, mdp) VALUES (?, ?, ?)');
+            $ok = $insert->execute([$nom, $email, $hash]);
+            if ($ok) {
+                header('Location: login.php?success=1');
+                exit;
+            } else {
+                $message = 'Something went wrong. Please try again.';
+            }
         }
     }
 }
-
-// Only include navbar AFTER all headers
 require 'includes/navbar.php';
 ?>
 

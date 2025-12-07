@@ -2,30 +2,27 @@
 session_start();
 
 require 'includes/db.php';
-
 $message = "";
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = filter_var(trim($_POST['email'] ?? ''), FILTER_VALIDATE_EMAIL);
+    $mdp = $_POST['mdp'] ?? '';
 
-    $email = trim($_POST["email"]);
-    $mdp   = $_POST["mdp"];
+    if (!$email || $mdp === '') {
+        $message = 'Please enter a valid email and password.';
+    } else {
+        $stmt = $pdo->prepare('SELECT * FROM users WHERE email = ? LIMIT 1');
+        $stmt->execute([$email]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // secure prepared statement
-    $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
-    $stmt->execute([$email]);
-
-    $user = $stmt->fetch(PDO::FETCH_ASSOC); // not fetchAll()
-
-    if ($user && password_verify($mdp, $user["mdp"])) {
-
-        $_SESSION["user_id"] = $user["user_id"];
-        $_SESSION["nom"]     = $user["nom"];
-
-        header("Location: index.php");
-        exit;
-    } 
-    else {
-        $message = "Incorrect email or password.";
+        if ($user && password_verify($mdp, $user['mdp'])) {
+            $_SESSION['user_id'] = $user['user_id'];
+            $_SESSION['nom'] = $user['nom'];
+            header('Location: index.php');
+            exit;
+        } else {
+            $message = 'Incorrect email or password.';
+        }
     }
 }
 
@@ -83,7 +80,6 @@ require 'includes/navbar.php';
         font-size: .9rem;
     }
 
-    /* Alerts */
     .alert {
         padding: 12px;
         border-radius: 8px;
@@ -102,8 +98,6 @@ require 'includes/navbar.php';
         color: #065f46;
         border: 1px solid #6ee7b7;
     }
-
-    /* Form */
     form label {
         display: block;
         margin-bottom: 6px;

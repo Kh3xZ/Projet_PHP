@@ -1,11 +1,7 @@
 <?php
-$host = "localhost";
-$dbname = "projetphp";
-$user = "root";
-$pass = "";
 
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pass);
+    $pdo = new PDO("mysql:host=localhost;dbname=projetphp;charset=utf8", "root", "");
 } catch (Exception $e) {
     die("Erreur : " . $e->getMessage());
 }
